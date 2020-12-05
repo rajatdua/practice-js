@@ -48,3 +48,5 @@ If there was var foo written on line 8 instead of just foo. The argument name of
 1. Calendar
 2. Calculator
 3. ToolTip
+4. Http
+5. InfiniteScroll
