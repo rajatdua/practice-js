@@ -6,9 +6,9 @@
     <script src="InfiniteScroll.js"></script>
     <script src="Prototypes.js"></script>
     <script src="ToolTip.js"></script>
-    <script src="Http.js"></script>
 </head>
 <body>
+<h1>Calendar</h1>
     <div class="calendar--con">
         <div id="monthWithYear"></div>
         <div class="calendar--action-bar">
@@ -21,6 +21,7 @@
         </table>
     </div>
 
+<h1>Calculator</h1>
     <div class="calculator--con">
         <div class="calculator--screen" id="screen"></div>
         <div class="">
@@ -29,7 +30,19 @@
         </div>
     </div>
 
+<h1>HTTP</h1>
+    <div class="http--con">
+        <button onclick="http.get()">GET</button>
+        <button onclick="http.get(true)">GET - ERROR</button>
+        <button onclick="http.post()">POST</button>
+        <button onclick="http.patch()">PATCH</button>
+        <button onclick="http.del()">DELETE</button>
+        <button onclick="http.reset()">RESET</button>
+        <div id="http-result"></div>
+    </div>
+
     <script src="Calendar.js"></script>
     <script src="Calculator.js"></script>
+    <script src="Http.js"></script>
 </body>
 </html>
