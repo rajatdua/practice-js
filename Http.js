@@ -70,6 +70,7 @@ const http = (function () {
     post,
     patch,
     del,
-    reset
+    reset,
+    execFetch
   }
 })();
