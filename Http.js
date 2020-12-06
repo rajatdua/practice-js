@@ -7,7 +7,7 @@ const http = (function () {
   const INIT = 'Click a button to make HTTP request';
   const responseID = document.getElementById('http-result');
   responseID.innerHTML = INIT;
-  const compose = (...fns) => x => fns.reduce((y, f) => f(y), x);
+  const compose = (...fns) => x => fns.reduceRight((y, f) => f(y), x);
   const safeParse = (response, isNotJSON) => {
     try {
       return isNotJSON? response.text() : response.json();
