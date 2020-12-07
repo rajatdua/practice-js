@@ -125,3 +125,17 @@ const deepClone = (inputObj) => {
   });
   return copy;
 };
+
+function add(x){
+  let sum = x;
+  function fn(y){
+    sum += y;
+    return fn;
+  }
+  fn.valueOf = function(){
+    return sum;
+  };
+  return fn;
+}
+
+console.log(+add(1)(2)(3)(4));
