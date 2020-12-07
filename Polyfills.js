@@ -103,3 +103,25 @@ const compose = (...fn) => {
     }, x);
   };
 };
+
+const flattenArray = (array) => {
+  return array.reduce((accumulator, item) => {
+    return accumulator.concat(Array.isArray(item) ? flattenArray(item) : item);
+  }, []);
+};
+
+const flattenObject = (object, path = []) => {
+  const isObject = (object) => object && object.constructor && object.constructor.prototype && object.constructor.prototype.hasOwnProperty("isPrototypeOf");
+  return Object.keys(object).reduce((accumulator, key) =>{
+    return Object.assign(accumulator,isObject(object[key]) ? flattenObject(object[key], path.concat(key)) : {  [path.concat(key).join('.')]: object[key] });
+  }, {});
+};
+
+const deepClone = (inputObj) => {
+  if (typeof inputObj !== "object") return inputObj;
+  const copy = Array.isArray(inputObj) ? [] : {};
+  Object.keys(inputObj).forEach((key) => {
+    copy[key] = deepClone(inputObj[key]);
+  });
+  return copy;
+};
