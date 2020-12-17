@@ -110,8 +110,9 @@ const flattenArray = (array) => {
   }, []);
 };
 
+const isObject = (object) => object && object.constructor && object.constructor.prototype && object.constructor.prototype.hasOwnProperty("isPrototypeOf");
+
 const flattenObject = (object, path = []) => {
-  const isObject = (object) => object && object.constructor && object.constructor.prototype && object.constructor.prototype.hasOwnProperty("isPrototypeOf");
   return Object.keys(object).reduce((accumulator, key) =>{
     return Object.assign(accumulator,isObject(object[key]) ? flattenObject(object[key], path.concat(key)) : {  [path.concat(key).join('.')]: object[key] });
   }, {});
@@ -139,3 +140,33 @@ function add(x){
 }
 
 console.log(+add(1)(2)(3)(4));
+
+
+const findPath = (obj, value, path = []) => {
+  const keyArray = Object.keys(obj);
+  for(let i = 0; i < keyArray.length; i++){
+    if(obj[keyArray[i]] === value){
+      path.push(keyArray[i]);
+      break;
+    }else{
+      if(isObject(obj[keyArray[i]])){
+        path.push(keyArray[i]);
+        findPath(obj[keyArray[i]], value, path);
+      }else{
+        path.pop();
+      }
+    }
+  }
+  return path.join('.');
+};
+let obj = {
+  a: "hi",
+  b: {
+    c: "there",
+    d: "hello",
+  },
+  e: {
+    f: "hey"
+  }
+};
+console.log(findPath(obj, 'hey')); // e.f
