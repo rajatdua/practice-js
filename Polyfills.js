@@ -170,3 +170,22 @@ let obj = {
   }
 };
 console.log(findPath(obj, 'hey')); // e.f
+
+const str = 'aasasaaaa';
+
+const mostOccurrence = string => {
+    let count = {}, maximum = '';
+    for(let i = 0; i < string.length; i++){
+        let key = string[i];
+        if(!count[key]){
+            count[key] = 0;
+        }
+        count[key]++;
+        if(!maximum || count[key] > count[maximum]){
+            maximum = key;
+        }
+    }
+    return { count: count[maximum], maximum };
+};
+
+console.log(mostOccurrence(str)); // { count: 7, maximum: 'a' }
